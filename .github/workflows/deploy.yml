@@ -1,0 +1,22 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: massive-hosting/deploy-action@v1
+        with:
+          ssh-key: ${{ secrets.HOSTING_SSH_KEY }}
+          host: ${{ vars.HOSTING_SSH_HOST }}
+          website: ${{ vars.WEBSITE_ID }}
+          exclude: .git .github node_modules tests
+          run-after: |
+            cd ~/sites/${{ vars.WEBSITE_ID }} && composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
