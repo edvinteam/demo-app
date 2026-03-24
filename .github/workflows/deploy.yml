@@ -16,7 +16,7 @@ jobs:
           website: ${{ vars.WEBSITE_ID }}
           exclude: .git .github node_modules tests
           run-after: |
-            cd ~/sites/${{ vars.WEBSITE_ID }} && composer install --no-dev --optimize-autoloader
+            cd ~/sites/${{ vars.WEBSITE_ID }} && composer install --no-dev --optimize-autoloader --no-scripts
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
