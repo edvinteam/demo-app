@@ -3,7 +3,6 @@ on:
   push:
     tags: ['v*']
   workflow_dispatch:
-  workflow_dispatch:
 
 jobs:
   deploy:
@@ -19,6 +18,4 @@ jobs:
           run-after: |
             cd ~/sites/${{ vars.WEBSITE_ID }} && composer install --no-dev --optimize-autoloader --no-scripts
             php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
+            php artisan optimize
