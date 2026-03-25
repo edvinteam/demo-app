@@ -552,7 +552,7 @@ function taskBoard() {
                 const wsPort = window.location.port || (window.location.protocol === 'https:' ? 443 : 80);
                 const wsScheme = window.location.protocol === 'https:' ? 'https' : 'http';
 
-                window.Echo = new Echo({
+                window.Echo = new window.Echo({
                     broadcaster: 'reverb',
                     key: '{{ env("REVERB_APP_KEY", "demo-key") }}',
                     wsHost: wsHost,
