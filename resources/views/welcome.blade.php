@@ -9,6 +9,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pusher-js@8.4.0/dist/web/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/laravel-echo@2.1.0/dist/echo.iife.js"></script>
+    <script>window.EchoConstructor = Echo;</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -552,7 +553,7 @@ function taskBoard() {
                 const wsPort = window.location.port || (window.location.protocol === 'https:' ? 443 : 80);
                 const wsScheme = window.location.protocol === 'https:' ? 'https' : 'http';
 
-                window.Echo = new window.Echo({
+                window.Echo = new window.EchoConstructor({
                     broadcaster: 'reverb',
                     key: '{{ env("REVERB_APP_KEY", "demo-key") }}',
                     wsHost: wsHost,
