@@ -560,7 +560,7 @@ function taskBoard() {
                     wsPort: wsPort,
                     wssPort: wsPort,
                     forceTLS: wsScheme === 'https',
-                    wsPath: '/app',
+                    wsPath: '',
                     enabledTransports: ['ws', 'wss'],
                     disableStats: true,
                 });
